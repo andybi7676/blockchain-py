@@ -19,6 +19,11 @@ pipenv install
 pipenv shell
 ```
 
+### Go to the directory
+```bash
+$ cd blockchain-py
+```
+
 ## How to use
 ### Create a wallet
 ```bash

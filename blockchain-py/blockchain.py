@@ -33,25 +33,27 @@ class Blockchain(object):
             else:
                 cb_tx = CoinbaseTx(
                     address, Blockchain.genesis_coinbase_data)
-                genesis = Block([cb_tx]).pow_of_block()
+                genesis = Block(1 , [cb_tx]).pow_of_block()
                 self._block_put(genesis)
 
     def _block_put(self, block):
         self._bucket.put(block.hash, block.serialize())
         self._bucket.put('l', block.hash)
+        self._bucket.put('h', block.height)
         self._tip = block.hash
         self._bucket.commit()
 
     def MineBlock(self, transaction_lst):
         # Mines a new block with the provided transactions
         last_hash = self._bucket.get('l')
+        last_height = self._bucket.get('h')
 
         for tx in transaction_lst:
             if not self.verify_transaction(tx):
                 print("ERROR: Invalid transaction")
                 sys.exit()
 
-        new_block = Block(transaction_lst, last_hash).pow_of_block()
+        new_block = Block(last_height+1, transaction_lst, last_hash).pow_of_block()
         self._block_put(new_block)
         return new_block
 
@@ -107,7 +109,6 @@ class Blockchain(object):
                 if not isinstance(tx, CoinbaseTx):
                     for vin in tx.vin:
                         spent_txos[vin.tx_id].append(vin.vout)
-
         return utxo
 
     @property
@@ -116,7 +117,8 @@ class Blockchain(object):
         while True:
             if not current_tip:
                 # Encounter genesis block
-                raise StopIteration
+                # raise StopIteration
+                break
             encoded_block = self._bucket.get(current_tip)
             block = pickle.loads(encoded_block)
             yield block

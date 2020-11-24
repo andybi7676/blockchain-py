@@ -15,9 +15,14 @@ def new_parser():
     parser = argparse.ArgumentParser()
     sub_parser = parser.add_subparsers(help='commands')
     # A print command
-    print_parser = sub_parser.add_parser(
-        'print', help='Print all the blocks of the blockchain')
-    print_parser.add_argument('--print', dest='print', action='store_true')
+    printchain_parser = sub_parser.add_parser(
+        'printchain', help='Print all the blocks of the blockchain')
+    printchain_parser.add_argument('--print', dest='printchain', action='store_true')
+    # A print comman
+    printblock_parser = sub_parser.add_parser(
+        'printblock', help='Print a block with the HEIGHT in the blockchain')
+    printblock_parser.add_argument('--height', type=int, dest='block_height', help='HEIGHT of the block')
+
     # A getbalance command
     balance_parser = sub_parser.add_parser(
         'getbalance', help='Get balance of ADDRESS')
@@ -87,8 +92,21 @@ def print_chain():
     for block in bc.blocks:
         print("Prev. hash: {0}".format(block.prev_block_hash))
         print("Hash: {0}".format(block.hash))
+        print("Height: {0}".format(block.height))
         pow = Pow(block)
         print("PoW: {0}".format(pow.validate()))
+
+def print_block(height):
+    bc = Blockchain()
+
+    for block in bc.blocks:
+        if(block.height == height):
+            print("Prev. hash: {0}".format(block.prev_block_hash))
+            print("Hash: {0}".format(block.hash))
+            print("Height: {0}".format(block.height))
+            pow = Pow(block)
+            print("PoW: {0}".format(pow.validate()))
+            break
 
 
 def send(from_addr, to_addr, amount):
@@ -109,8 +127,11 @@ if __name__ == '__main__':
     if hasattr(args, 'wallet'):
         create_wallet()
 
-    if hasattr(args, 'print'):
+    if hasattr(args, 'printchain'):
         print_chain()
+    
+    if hasattr(args, 'block_height'):
+        print_block(args.block_height)
 
     if hasattr(args, 'balance_address'):
         get_balance(args.balance_address)

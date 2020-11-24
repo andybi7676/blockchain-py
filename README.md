@@ -1,9 +1,10 @@
 
 
-# blockchain-py
+# b07502072BTC
 
 
-This is a python imlementation of [blockchain_go](https://github.com/Jeiwan/blockchain_go)
+Source from [blockchain-py](https://github.com/yummybian/blockchain-py)
+
 
 ## Preparation
 ### Install [pipenv](https://github.com/pypa/pipenv)
@@ -49,22 +50,36 @@ Success!
 ### Get balance of some address
 ```bash
 $ python cli.py getbalance --address 17Y288D5DnFwU6cj5M8YHnxYNnDhN6f5FK 
-Balance of 17Y288D5DnFwU6cj5M8YHnxYNnDhN6f5FK
+Balance of 17Y288D5DnFwU6cj5M8YHnxYNnDhN6f5FK:
+```
+
+### Print out the whole blockchain
+```bash
+$ python cli.py printchain
+Prev. hash: 003971542065a0200022725bed2bd612b35495d4121f2359a0ef20fa07364953
+Hash: 00116a06cb01eea5b90e7b686244c5a369956adb6daf2d55e68c5d510864bcf9
+Height: 2
+PoW: True
+Prev. hash:
+Hash: 003971542065a0200022725bed2bd612b35495d4121f2359a0ef20fa07364953
+Height: 1
+PoW: True
+```
+
+### Print out one of the block (assigned by height)
+```bash
+$ python cli.py printblock --height 2
+Prev. hash: 003971542065a0200022725bed2bd612b35495d4121f2359a0ef20fa07364953
+Hash: 00116a06cb01eea5b90e7b686244c5a369956adb6daf2d55e68c5d510864bcf9
+Height: 2
+PoW: True
 ```
 
 ***
 
 **Todo**
-
-- [x] [Basic Prototype](https://jeiwan.cc/posts/building-blockchain-in-go-part-1/)
-- [x] [Proof-of-Work](https://jeiwan.cc/posts/building-blockchain-in-go-part-2/)
-- [x] [Persistence and CLI](https://jeiwan.cc/posts/building-blockchain-in-go-part-3/)
-- [x] [Transactions 1](https://jeiwan.cc/posts/building-blockchain-in-go-part-4/)
-- [x] [Addresses](https://jeiwan.cc/posts/building-blockchain-in-go-part-5/)
-- [x] [Transactions 2](https://jeiwan.cc/posts/building-blockchain-in-go-part-6/)
-- [ ] [Network](https://jeiwan.cc/posts/building-blockchain-in-go-part-7/)
-
-
-[教程中文翻译](https://github.com/liuchengxu/blockchain-tutorial/blob/master/content/SUMMARY.md)
-
-Thanks to [liuchengxu](https://github.com/liuchengxu)
+- [x] [Prototype] Block(10%), Blockchain(10%), Proof-of-Work(20%) 40%
+- [x] [Persistence] Database(20%), Client(20%) 40%
+- [x] [Transactionbasic] UTXO(5%) or Account model(2%) 5%
+- [x] [Address] Sign & Verify(5%) 5%
+- [x] [Transaction] Mining reward(2%), Merkle tree(8%)

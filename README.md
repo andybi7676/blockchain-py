@@ -75,9 +75,9 @@ Height: 2
 PoW: True
 ```
 
-***
+## Functionalities
 
-**functionalities**
+**Todos**
 - [x] [Prototype]         Block(10%), Blockchain(10%), Proof-of-Work(20%) 40%
 - [x] [Persistence]       Database(20%), Client(20%)                      40%
 - [x] [Transactionbasic]  UTXO(5%) or Account model(2%)                   5%

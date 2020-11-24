@@ -78,8 +78,8 @@ PoW: True
 ***
 
 **Todo**
-- [x] [Prototype] Block(10%), Blockchain(10%), Proof-of-Work(20%) 40%
-- [x] [Persistence] Database(20%), Client(20%) 40%
-- [x] [Transactionbasic] UTXO(5%) or Account model(2%) 5%
-- [x] [Address] Sign & Verify(5%) 5%
-- [x] [Transaction] Mining reward(2%), Merkle tree(8%)
+- [x] [Prototype]         Block(10%), Blockchain(10%), Proof-of-Work(20%) 40%
+- [x] [Persistence]       Database(20%), Client(20%)                      40%
+- [x] [Transactionbasic]  UTXO(5%) or Account model(2%)                   5%
+- [x] [Address]           Sign & Verify(5%)                               5%
+- [x] [Transaction]       Mining reward(2%), Merkle tree(8%)              10%
